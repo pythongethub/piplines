@@ -23,7 +23,7 @@ pipeline {
                     choice(name: 'Release', choices: 'Regular\nHotfix', description: 'What type of release is this ??')
                     text(name: 'Notes', defaultValue: "Enter release notes if any.....", description: 'Release Notes')
                     password(name: 'myPassword', defaultValue: 'myPasswordValue', description: 'Enter the password')
-                    credentials(name: 'myCredentials', description: 'My Credentials stored', required: true)
+                    //credentials(name: 'myCredentials', description: 'My Credentials stored', required: true)
                 }
             }
             steps {
