@@ -1,26 +1,12 @@
 pipeline {
-    agent any
-    environment {
-        name="murali"
-        course="k8s"
-    }
-    stages{
-        stage ('env'){
-            steps{
-                echo "my name is ${name} and i am learning ${course}"
-
-            }
-        }
-        stage("cred"){
-            environment{
-                myid=credentials("ssh_murali_creds")
-                name="reddy"
-            }
-            steps{
-                echo "my github credentials are ${myid}"
-                echo "user id: ${myid_USR}"
-                echo "password: ${myid_PSW}"
-                echo "my name is ${name}"
+    agent any 
+    stages {
+        stage ('Build') {
+            steps {
+                timeout (time: 300, unit:'SECONDS'){ // 5min approval.....s
+                    input message: 'Are you Building the applicaiton', ok: 'yes', submitter: 'siva, maha'
+                }
+                echo "Builing the applicaiton"
             }
         }
     }
