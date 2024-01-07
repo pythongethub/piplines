@@ -4,8 +4,10 @@ pipeline {
         stage ('Build') {
             steps {
                 retry (3) {
-                    echo "Welocme to Pipeline"
-                    error "Testing the Retry block"
+                    timeout(time:2, unit:'SECONDS'){
+                        echo "Welocme to Pipeline"
+                        error "Testing the Retry block"
+                    }
                 }
                 echo "Printing after 3 retrys"
             }
