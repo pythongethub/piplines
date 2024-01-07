@@ -1,20 +1,26 @@
 pipeline {
     agent any
-    tools {
-        maven 'maven3.8.8'
+    environment {
+        name="murali"
+        course="k8s"
     }
-    stages {
-        stage ('version'){
+    stages{
+        stage ('env'){
             steps{
-                sh 'mvn --version'
+                echo "my name is ${name} and i am learning ${course}"
+
             }
         }
-        stage('jdk version'){
-            tools{
-                jdk 'jdk17'
+        stage("cred"){
+            environment{
+                myid=credentials("ssh_murali_creds")
+                name="reddy"
             }
             steps{
-                sh 'mvn --version'
+                echo "my github credentials are ${myid_CREDS}"
+                echo "user id: ${myid_USR}"
+                echo "password: ${myid_PSW}"
+                echo "my name is ${name}"
             }
         }
     }
