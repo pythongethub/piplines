@@ -14,7 +14,7 @@ pipeline {
                 jdk 'jdk17'
             }
             steps{
-                sh 'jdk --version'
+                sh 'mvn --version'
             }
         }
     }
