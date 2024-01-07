@@ -16,7 +16,7 @@ pipeline{
                 submitter "muralidhar"
                 submitterParameter "whoApproved"
                 parameters{
-                    string(name:'CHANGE_TICKET', defaultValue": 'CH12345',description: 'Please Enter Change Ticket number')
+                    string(name:'CHANGE_TICKET', defaultValue: 'CH12345',description: 'Please Enter Change Ticket number')
                     booleanParam(name: 'SRE Approved ????', defaultValue: true, description: 'Is approval taken from SRE??')
                     choice(name: 'Release', choices: 'Regular\nHotfix', description: 'What type of release is this ??')
                     text(name: 'Notes', defaultValue: "Enter release notes if any.....", description: 'Release Notes')
