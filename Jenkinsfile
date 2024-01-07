@@ -1,40 +1,30 @@
-// let write a bit complex one with both input and parameters.
-// stage > input and parameters 
+// This is for Parameters example 
 pipeline {
-    agent any 
+    agent any
+    parameters {
+        // string , text, booleanParam, choice, password
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        string (name: 'BRANCH_NAME', defaultValue: "main", description: 'Whats the branch i should build??')
+        booleanParam( // true, false
+            name: 'TOOGLE',
+            defaultValue: true,
+            description: 'toogle this value'
+        )
+        choice(
+            name: 'ENV',
+            choices: ['dev', 'tst', 'stg', 'prd'],
+            description: 'Select the env u want to deploy'
+        )
+    }
     stages {
-        stage ('Deploy to Dev') {
+        stage ('Example') {
             steps {
-                echo "Deploying to dev env Succesfully"
-            }
-        }
-        stage ('Deploy to Prod') {
-            options {
-                timeout(time: 600, unit: 'SECONDS')
-            }
-            input {
-                message "Should We Continue ???"
-                ok "Approved"
-                submitter "krish" // maha, krish , by default admins can approve, no need to provide the name here 
-                submitterParameter "whoApproved"
-                parameters {
-                    string(name: 'CHANGE_TICKET', defaultValue: 'CH12345', description: 'Please Enter Change Ticket number')
-                    booleanParam(name: 'SRE Approved ????', defaultValue: true, description: 'Is approval taken from SRE??')
-                    choice(name: 'Release', choices: 'Regular\nHotfix', description: 'What type of release is this ??')
-                    text(name: 'Notes', defaultValue: "Enter release notes if any.....", description: 'Release Notes')
-                    password(name: 'myPassword', defaultValue: 'myPasswordValue', description: 'Enter the password')
-                    //credentials(name: 'myCredentials', description: 'My Credentials stored', required: true)
-                }
-            }
-            steps {
-                echo "The Change Ticket is ${CHANGE_TICKET}"
-                echo "Deploying to Production"
-                echo "This is a ${Release} Release"
-                echo "Approved by ${whoApproved}"
+                echo "Hello ${params.PERSON}"
+                echo "Boolean parameter is: ${params.TOOGLE}"
+                echo "Deploying to ${params.ENV} environment"
             }
         }
     }
 }
 
-// pipeline >> params.NAME
-// stage >.>.input >>>> parameters >>> NAME
+// Complex..... Input + parameters ....
