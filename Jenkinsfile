@@ -17,7 +17,7 @@ pipeline {
                 name="reddy"
             }
             steps{
-                echo "my github credentials are ${myid_CREDS}"
+                echo "my github credentials are ${myid}"
                 echo "user id: ${myid_USR}"
                 echo "password: ${myid_PSW}"
                 echo "my name is ${name}"
