@@ -8,7 +8,7 @@ pipeline{
         }
         stage{
             options{
-                timeout(time 300,unit:'SECONDS')
+                timeout(time:300,unit:'SECONDS')
             }
             input{
                 message "should we  continue ???"
