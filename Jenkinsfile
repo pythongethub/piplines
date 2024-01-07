@@ -1,13 +1,13 @@
-pipeline{
-    agent any 
-    stages{
-        stage ('retry'){
+pipeline {
+    agent any
+    stages {
+        stage ('Build') {
             steps {
-                retry(3){
-                    echo "hey trying for retry"
-                    error "hey its looking fpr error"
+                retry (3) {
+                    echo "Welocme to Pipeline"
+                    error "Testing the Retry block"
                 }
-                echo "hey after retry"
+                echo "Printing after 3 retrys"
             }
         }
     }
